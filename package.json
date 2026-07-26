@@ -1,0 +1,58 @@
+{
+  "name": "@stylebakery/stylebakery",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A themeable Svelte 5 component library with a bundled CSS design system, a visual theme builder, and 12 page layouts.",
+  "keywords": [
+    "svelte",
+    "svelte5",
+    "components",
+    "design-system",
+    "ui",
+    "css",
+    "theme",
+    "dark-mode"
+  ],
+  "license": "MIT",
+  "author": "",
+  "homepage": "https://stylebakery.net",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stylebakery/stylebakery.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stylebakery/stylebakery/issues"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "svelte": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
+    "./css": "./dist/css/index.css",
+    "./css/*": "./dist/css/*",
+    "./theme": "./dist/theme/theme.svelte.js"
+  },
+  "scripts": {
+    "package": "svelte-package -i src/lib -o dist",
+    "prepublishOnly": "npm run package"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "svelte": "^5.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  }
+}

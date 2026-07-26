@@ -1,0 +1,190 @@
+/* components/nav.css */
+
+.nav-item {
+  display:          flex;
+  align-items:      center;
+  gap:              var(--space-3);
+  padding:          var(--space-2) var(--space-3);
+  border-radius:    var(--radius-full);
+  font-size:        var(--text-sm);
+  font-weight:      var(--font-medium);
+  color:            var(--color-text-muted);
+  cursor:           pointer;
+  text-decoration:  none;
+  transition:       background-color var(--duration-fast) var(--ease-default),
+                    color            var(--duration-fast) var(--ease-default);
+  user-select:      none;
+  white-space:      nowrap;
+  overflow:         hidden;
+  /* reset button defaults so <button> and <a> look identical */
+  width:            100%;
+  border:           none;
+  background:       none;
+  text-align:       left;
+  box-sizing:       border-box;
+  font-family:      var(--font-sans);
+  line-height:      var(--leading-normal);
+  -webkit-appearance: none;
+}
+
+.nav-item:hover {
+  background-color: var(--color-slate-100);
+  color:            var(--color-text);
+}
+
+.nav-item.active {
+  background-color: var(--color-primary);
+  color:            var(--color-primary-text);
+}
+
+.nav-item.active:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.nav-icon {
+  font-size:   1.25rem;
+  flex-shrink: 0;
+  opacity:     0.8;
+}
+
+.nav-item.active .nav-icon { opacity: 1; }
+
+.nav-label {
+  flex:          1;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-badge {
+  margin-left:      auto;
+  background-color: var(--color-slate-200);
+  color:            var(--color-text-muted);
+  font-size:        var(--text-xs);
+  font-weight:      var(--font-semibold);
+  padding:          0 var(--space-2);
+  border-radius:    var(--radius-full);
+  flex-shrink:      0;
+  line-height:      1.6;
+}
+
+.nav-item.active .nav-badge {
+  background-color: rgb(255 255 255 / 0.2);
+  color:            var(--color-primary-text);
+}
+
+
+/* --- Nav group --- */
+
+.nav-group-trigger {
+  width:      100%;
+  background: none;
+  border:     none;
+}
+
+.nav-group-trigger .nav-chevron {
+  margin-left: auto;
+  font-size:   1rem;
+  flex-shrink: 0;
+  transition:  transform var(--duration-normal) var(--ease-default);
+  opacity:     0.6;
+}
+
+.nav-group-trigger[aria-expanded="true"] .nav-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-group-children {
+  overflow:   hidden;
+  height:     0;
+  transition: height var(--duration-normal) var(--ease-default);
+}
+
+.nav-group-children.open {
+  height: auto;
+}
+
+.nav-group-children .nav-item {
+  padding-left: calc(var(--space-3) + 1rem + var(--space-3));
+  font-weight:  var(--font-normal);
+}
+
+
+/* --- Divider --- */
+
+.nav-divider {
+  height:     1px;
+  background: var(--color-border);
+  margin:     var(--space-2) var(--space-3);
+}
+
+/* --- Second level (vertical, expand inline) --- */
+
+.nav-item-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-chevron {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+  margin-left:     auto;
+  width:           1.5rem;
+  height:          1.5rem;
+  border:          none;
+  background:      none;
+  cursor:          pointer;
+  border-radius:   var(--radius-sm);
+  color:           inherit;
+  opacity:         0.7;
+  transition:      transform var(--duration-fast) var(--ease-default),
+                   opacity   var(--duration-fast) var(--ease-default),
+                   background-color var(--duration-fast) var(--ease-default);
+}
+
+.nav-chevron .material-symbols-outlined { font-size: 1.15rem; }
+.nav-chevron:hover { opacity: 1; background-color: rgb(0 0 0 / 0.06); }
+.nav-chevron.open { transform: rotate(90deg); }
+
+/* When the parent row is a link, the chevron sits after the badge */
+.nav-item .nav-chevron { margin-left: var(--space-1); }
+
+.nav-subitems {
+  display:        flex;
+  flex-direction: column;
+  gap:            2px;
+  margin:         2px 0 var(--space-1) 0;
+  padding-left:   var(--space-3);
+  /* guide line for the nested group */
+  margin-left:    var(--space-4);
+  border-left:    1px solid var(--color-border);
+}
+
+.nav-subitem {
+  display:         flex;
+  align-items:     center;
+  gap:             var(--space-2);
+  padding:         var(--space-2) var(--space-3);
+  border-radius:   var(--radius-md);
+  font-size:       var(--text-sm);
+  color:           var(--color-text-muted);
+  text-decoration: none;
+  white-space:     nowrap;
+  overflow:        hidden;
+  transition:      background-color var(--duration-fast) var(--ease-default),
+                   color            var(--duration-fast) var(--ease-default);
+}
+
+.nav-subitem:hover {
+  background-color: var(--color-slate-100);
+  color:            var(--color-text);
+}
+
+.nav-subitem.active {
+  color:       var(--color-primary);
+  font-weight: var(--font-semibold);
+  background-color: var(--color-info-bg);
+}
+
+.nav-subicon { font-size: 1.1rem; flex-shrink: 0; opacity: 0.8; }

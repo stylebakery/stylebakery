@@ -1,0 +1,12 @@
+/* layout/container.css */
+
+.container {
+  width:     100%;
+  max-width: 72rem;
+  margin:    0 auto;
+  padding:   0 var(--space-6);
+}
+
+.container-sm  { max-width: 48rem; }
+.container-lg  { max-width: 90rem; }
+.container-full { max-width: none; }

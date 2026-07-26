@@ -1,0 +1,50 @@
+/* components/pagination.css */
+
+.pagination {
+  display:     inline-flex;
+  align-items: center;
+  gap:         var(--space-1);
+}
+
+.pagination-btn {
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  min-width:        2.25rem;
+  height:           2.25rem;
+  padding:          0 var(--space-2);
+  border:           1px solid transparent;
+  background:       none;
+  border-radius:    var(--radius-md);
+  font:             inherit;
+  font-size:        var(--text-sm);
+  font-weight:      var(--font-medium);
+  color:            var(--color-text);
+  cursor:           pointer;
+  transition:       background var(--duration-fast) var(--ease-default),
+                    border-color var(--duration-fast) var(--ease-default),
+                    color var(--duration-fast) var(--ease-default);
+}
+.pagination-btn:hover:not(:disabled):not(.active) {
+  background: var(--color-bg-subtle);
+}
+.pagination-btn.active {
+  background:   var(--color-primary);
+  color:        var(--color-primary-text);
+  font-weight:  var(--font-semibold);
+}
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor:  not-allowed;
+}
+.pagination-arrow .material-symbols-outlined { font-size: 1.25rem; }
+
+.pagination-ellipsis {
+  display:         inline-flex;
+  align-items:     flex-end;
+  justify-content: center;
+  min-width:       2rem;
+  height:          2.25rem;
+  color:           var(--color-text-subtle);
+  padding-bottom:  var(--space-1);
+}

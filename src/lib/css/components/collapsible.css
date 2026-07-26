@@ -1,0 +1,61 @@
+/* components/collapsible.css */
+
+/* ─── Chevron ─── */
+.chevron {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  border:          none;
+  background:      none;
+  padding:         0;
+  cursor:          pointer;
+  color:           inherit;
+  font-size:       1.25em;
+  line-height:     1;
+  transition:      transform var(--duration-fast) var(--ease-default),
+                   opacity var(--duration-fast) var(--ease-default);
+}
+.chevron .material-symbols-outlined { font-size: inherit; }
+.chevron:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Collapsed points right; expanded rotates. Default: right → down (90°). */
+.chevron-from-right.expanded { transform: rotate(90deg); }
+.chevron-from-down            { transform: rotate(90deg); }
+.chevron-from-down.expanded   { transform: rotate(0deg); }
+
+/* ─── Collapsible ─── */
+.collapsible { width: 100%; }
+
+.collapsible-trigger {
+  display:      flex;
+  align-items:  center;
+  gap:          var(--space-2);
+  width:        100%;
+  padding:      var(--space-2) 0;
+  border:       none;
+  background:   none;
+  font:         inherit;
+  color:        var(--color-text);
+  text-align:   left;
+  cursor:       pointer;
+}
+.collapsible-trigger:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Visual-only chevron inside the trigger button */
+.collapsible-chevron {
+  flex-shrink: 0;
+  color:       var(--color-text-muted);
+  transition:  transform var(--duration-fast) var(--ease-default);
+}
+.collapsible-chevron.expanded { transform: rotate(90deg); }
+
+.collapsible-title {
+  font-size:   var(--text-sm);
+  font-weight: var(--font-medium);
+}
+
+.collapsible-content {
+  padding:     var(--space-2) 0 var(--space-3) calc(1.25em + var(--space-2));
+  color:       var(--color-text);
+  font-size:   var(--text-sm);
+}

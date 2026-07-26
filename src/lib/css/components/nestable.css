@@ -1,0 +1,187 @@
+/* layouts/nestable.css — scaffolding for single-region nestable layouts */
+
+/* Root fills its parent completely, so nesting works at any depth.
+   The outermost one is sized by its container (e.g. 100vh wrapper). */
+.nl {
+  display: flex;
+  width:   100%;
+  height:  100%;
+  min-height: 0;
+  min-width:  0;
+}
+.nl-col { flex-direction: column; }
+.nl-row { flex-direction: row; }
+
+/* The content area that a child layout (or page) fills. flex:1 + min-0 is what
+   lets a nested .nl inside expand to the available space instead of collapsing. */
+.nl-fill {
+  flex:       1;
+  min-width:  0;
+  min-height: 0;
+  display:    flex;
+  flex-direction: column;
+}
+.nl-scroll { overflow: auto; }
+
+/* When a plain page (not another layout) is the content, give it padding.
+   A nested .nl fills edge-to-edge; direct page content gets breathing room. */
+.nl-fill > :not(.nl):not(.nl-passthrough) {
+  padding: var(--space-6);
+}
+
+/* Right sidebar wrapper keeps SideBar's border on the correct edge */
+.nl-right .sb { border-right: none; border-left: 1px solid var(--color-border); }
+
+/* Bottom bar wrapper: horizontal bar pinned below content */
+.nl-bottom .tb { border-bottom: none; border-top: 1px solid var(--color-border); }
+
+/* An outer wrapper helper for the top-level layout to establish full height */
+.nl-app { height: 100vh; }
+
+/* ─── Icon rail ─── */
+.ir {
+  width: 3.5rem; flex-shrink: 0; display: flex; flex-direction: column; align-items: center;
+  gap: var(--space-2); padding: var(--space-3) 0;
+  background: var(--color-surface); border-right: 1px solid var(--color-border);
+}
+.ir-brand {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.25rem; height: 2.25rem; border-radius: var(--radius-md);
+  color: var(--color-accent-light, var(--color-primary)); text-decoration: none;
+  margin-bottom: var(--space-2);
+}
+.ir-brand .material-symbols-outlined { font-size: 1.5rem; }
+.ir-nav { flex: 1; display: flex; flex-direction: column; gap: var(--space-1); align-items: center; }
+.ir-item {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  width: 2.5rem; height: 2.5rem; border-radius: var(--radius-md);
+  color: var(--color-text-muted); text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-default), color var(--duration-fast) var(--ease-default);
+}
+.ir-item .material-symbols-outlined { font-size: 1.4rem; }
+.ir-item:hover { background: var(--color-bg-subtle); color: var(--color-text); }
+.ir-item.active { background: var(--color-primary-subtle, var(--color-bg-subtle)); color: var(--color-primary); }
+.ir-tip {
+  position: absolute; left: calc(100% + var(--space-2)); top: 50%; transform: translateY(-50%);
+  padding: var(--space-1) var(--space-2); background: var(--color-text, #1e293b); color: var(--color-surface, #fff);
+  font-size: var(--text-xs); white-space: nowrap; border-radius: var(--radius-sm);
+  opacity: 0; pointer-events: none; transition: opacity var(--duration-fast) var(--ease-default); z-index: 300;
+}
+.ir-item:hover .ir-tip { opacity: 1; }
+.ir-dot { position: absolute; top: 0.5rem; right: 0.5rem; width: 0.45rem; height: 0.45rem; border-radius: var(--radius-full); background: var(--color-primary); }
+.ir-foot { display: flex; align-items: center; justify-content: center; }
+
+/* ─── Floating nestable (top / left cards) ─── */
+.nlf-pad { padding: var(--space-4); gap: var(--space-4); background: var(--color-bg); }
+.nlf-topcard {
+  display: flex; align-items: center; gap: var(--space-6);
+  padding: var(--space-2) var(--space-4); background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+}
+.nlf-brand { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: var(--font-bold); font-size: var(--text-lg); color: var(--color-text); white-space: nowrap; }
+.nlf-brand-icon { color: var(--color-accent-light, var(--color-primary)); }
+.nlf-topnav { display: flex; align-items: center; gap: var(--space-1); flex: 1; }
+.nlf-toplink, .nlf-sidelink {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);
+  font-size: var(--text-sm); font-weight: var(--font-medium); color: var(--color-text-muted);
+  text-decoration: none; white-space: nowrap;
+  transition: background var(--duration-fast) var(--ease-default), color var(--duration-fast) var(--ease-default);
+}
+.nlf-toplink .material-symbols-outlined, .nlf-sidelink .material-symbols-outlined { font-size: 1.2rem; }
+.nlf-toplink:hover, .nlf-sidelink:hover { background: var(--color-bg-subtle); color: var(--color-text); }
+.nlf-toplink.active, .nlf-sidelink.active { background: var(--color-primary-subtle, var(--color-bg-subtle)); color: var(--color-primary); }
+.nlf-actions { display: inline-flex; align-items: center; gap: var(--space-3); }
+
+/* Fills the row's height (the flex default is `stretch`), matching the
+   non-floating .sb sidebar. */
+.nlf-sidecard {
+  width: 14rem; flex-shrink: 0; display: flex; flex-direction: column; padding: var(--space-3);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-md); max-height: 100%; overflow-y: auto;
+}
+.nlf-side-brand { padding: var(--space-2) var(--space-2) var(--space-3); }
+/* flex:1 takes the free space, so .nlf-side-foot (e.g. a SidebarProfile) sits
+   at the bottom of the card rather than directly under the last nav item —
+   same arrangement as .sb-nav / .sb-footer. */
+.nlf-sidenav { display: flex; flex-direction: column; gap: 1px; flex: 1; }
+.nlf-sidelink { justify-content: flex-start; }
+.nlf-sidelabel { flex: 1; }
+.nlf-side-label { font-size: var(--text-xs); font-weight: var(--font-semibold); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--color-text-subtle); padding: var(--space-3) var(--space-2) var(--space-1); }
+.nlf-badge { font-size: var(--text-xs); font-weight: var(--font-semibold); background: var(--color-primary); color: var(--color-primary-text); border-radius: var(--radius-full); padding: 0 var(--space-2); min-width: 1.25rem; text-align: center; }
+.nlf-side-foot { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--color-border); }
+.nlf-content { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+
+/* ─── Floating dock (nestable) ─── */
+.nldk { position: relative; }
+.nldk-content { padding-bottom: 6rem; }
+.nldk-dockwrap { position: absolute; bottom: var(--space-6); left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; }
+.nldk-dock {
+  display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-2);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl, 1rem); box-shadow: var(--shadow-lg); pointer-events: auto;
+}
+.nldk-item {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  width: 2.75rem; height: 2.75rem; border-radius: var(--radius-md); color: var(--color-text-muted);
+  text-decoration: none; transition: background var(--duration-fast) var(--ease-default), color var(--duration-fast) var(--ease-default), transform var(--duration-fast) var(--ease-default);
+}
+.nldk-item .material-symbols-outlined { font-size: 1.5rem; }
+.nldk-item:hover { background: var(--color-bg-subtle); color: var(--color-text); transform: translateY(-4px); }
+.nldk-item.active { color: var(--color-primary); background: var(--color-primary-subtle, var(--color-bg-subtle)); }
+.nldk-label {
+  position: absolute; bottom: calc(100% + var(--space-2)); left: 50%; transform: translateX(-50%);
+  padding: var(--space-1) var(--space-2); background: var(--color-text, #1e293b); color: var(--color-surface, #fff);
+  font-size: var(--text-xs); white-space: nowrap; border-radius: var(--radius-sm);
+  opacity: 0; pointer-events: none; transition: opacity var(--duration-fast) var(--ease-default);
+}
+.nldk-item:hover .nldk-label { opacity: 1; }
+
+/* ─── Submenus across nestable layouts ─── */
+
+/* Floating-left: expandable subnav (like SideBar) */
+.nlf-parent { width: 100%; border: none; background: none; font: inherit; cursor: pointer; text-align: left; }
+.nlf-chevron { font-size: 1.1rem; margin-left: auto; color: var(--color-text-subtle); transition: transform var(--duration-fast) var(--ease-default); }
+.nlf-chevron.open { transform: rotate(90deg); }
+.nlf-subnav { display: flex; flex-direction: column; gap: 1px; margin: 1px 0 1px var(--space-3); padding-left: var(--space-2); border-left: 1px solid var(--color-border); }
+.nlf-sublink {
+  display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md); font-size: var(--text-sm); color: var(--color-text-muted); text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-default), color var(--duration-fast) var(--ease-default);
+}
+.nlf-sublink .material-symbols-outlined { font-size: 1.05rem; }
+.nlf-sublink:hover { background: var(--color-bg-subtle); color: var(--color-text); }
+.nlf-sublink.active { background: var(--color-primary-subtle, var(--color-bg-subtle)); color: var(--color-primary); }
+
+/* Floating-top: flyout (like TopBar) */
+.nlf-flywrap { position: relative; display: inline-flex; align-items: center; }
+.nlf-flybtn { display: inline-flex; align-items: center; justify-content: center; border: none; background: none; cursor: pointer; color: var(--color-text-subtle); padding: var(--space-1); border-radius: var(--radius-sm); }
+.nlf-flybtn:hover { background: var(--color-bg-subtle); }
+.nlf-flyout, .ir-flyout, .nldk-flyout {
+  position: absolute; z-index: 300; min-width: 12rem; display: flex; flex-direction: column; gap: 1px;
+  padding: var(--space-2); background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+}
+.nlf-flyout { top: calc(100% + var(--space-2)); left: 0; }
+.nlf-flyout-item, .ir-flyout-item, .nldk-flyout-item {
+  display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm); font-size: var(--text-sm); color: var(--color-text); text-decoration: none; white-space: nowrap;
+}
+.nlf-flyout-item .material-symbols-outlined, .ir-flyout-item .material-symbols-outlined, .nldk-flyout-item .material-symbols-outlined { font-size: 1.1rem; color: var(--color-text-muted); }
+.nlf-flyout-item:hover, .ir-flyout-item:hover, .nldk-flyout-item:hover { background: var(--color-bg-subtle); }
+
+/* Icon rail: flyout to the right */
+.ir-flywrap { position: relative; display: inline-flex; }
+.ir-flyout { left: calc(100% + var(--space-2)); top: 0; }
+.ir-flyout-head { font-size: var(--text-xs); font-weight: var(--font-semibold); color: var(--color-text-subtle); text-transform: uppercase; letter-spacing: var(--tracking-wide); padding: var(--space-1) var(--space-3) var(--space-2); }
+.ir-flyout-item.active { background: var(--color-primary-subtle, var(--color-bg-subtle)); color: var(--color-primary); }
+
+/* Dock: flyout upward */
+.nldk-flywrap { position: relative; display: inline-flex; }
+.nldk-flyout { bottom: calc(100% + var(--space-2)); left: 50%; transform: translateX(-50%); }
+
+/* Floating-top parent (opens flyout on whole-item click) */
+.nlf-parent { border: none; background: none; font: inherit; cursor: pointer; }
+.nlf-caret { font-size: 1.05rem; transition: transform var(--duration-fast) var(--ease-default); }
+.nlf-caret.open { transform: rotate(180deg); }

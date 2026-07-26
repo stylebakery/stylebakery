@@ -1,0 +1,78 @@
+/* components/sidebar.css */
+
+.sidebar-profile {
+  display:          flex;
+  align-items:      center;
+  gap:              var(--space-3);
+  padding:          var(--space-2) var(--space-3);
+  border-radius:    var(--radius-sm);
+  cursor:           pointer;
+  transition:       background-color var(--duration-fast) var(--ease-default);
+  /* reset button defaults */
+  width:            100%;
+  border:           none;
+  background:       none;
+  text-align:       left;
+  font-family:      var(--font-sans);
+  -webkit-appearance: none;
+}
+
+.sidebar-profile:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+.sidebar-avatar {
+  width:            2rem;
+  height:           2rem;
+  border-radius:    var(--radius-full);
+  background-color: var(--color-slate-200);
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  font-size:        var(--text-sm);
+  font-weight:      var(--font-semibold);
+  color:            var(--color-slate-600);
+  flex-shrink:      0;
+  overflow:         hidden;
+}
+
+.sidebar-avatar img {
+  width:      100%;
+  height:     100%;
+  object-fit: cover;
+}
+
+.sidebar-avatar-lg {
+  width:     2.5rem;
+  height:    2.5rem;
+  font-size: var(--text-base);
+}
+
+.sidebar-profile-info {
+  flex:      1;
+  overflow:  hidden;
+  min-width: 0;
+}
+
+.sidebar-profile-name {
+  font-size:     var(--text-sm);
+  font-weight:   var(--font-medium);
+  color:         var(--color-text);
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  white-space:   nowrap;
+}
+
+.sidebar-profile-role {
+  font-size:     var(--text-xs);
+  color:         var(--color-text-muted);
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  white-space:   nowrap;
+}
+
+.sidebar-profile-action {
+  flex-shrink: 0;
+  color:       var(--color-text-subtle);
+  font-size:   1.1rem;
+}

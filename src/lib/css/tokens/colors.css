@@ -1,0 +1,81 @@
+/* tokens/colors.css */
+
+:root {
+  /* Slate scale */
+  --color-slate-50:  #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+
+  /* Accent */
+  --color-accent-light: #4f87f5;
+  --color-accent:       #2d6ae0;
+  --color-accent-dark:  #1d58cc;
+
+  /* ── Light mode (default) ── */
+  --color-bg:            #f9fafb;
+  --color-bg-subtle:     #f1f5f9;
+  --color-surface:       #ffffff;
+  --color-border:        #e8edf2;
+  --color-border-strong: #d4dbe4;
+
+  --color-text:          var(--color-slate-900);
+  --color-text-muted:    var(--color-slate-500);
+  --color-text-subtle:   var(--color-slate-400);
+  --color-text-inverse:  #ffffff;
+
+  --color-primary:       var(--color-accent);
+  --color-primary-hover: var(--color-accent-dark);
+  --color-primary-text:  #ffffff;
+
+  /* Header */
+  --color-header-bg:     var(--color-slate-800);
+  --color-header-border: var(--color-slate-700);
+
+  /* Feedback */
+  --color-success:    #16a34a;
+  --color-success-bg: #f0fdf4;
+  --color-warning:    #d97706;
+  --color-warning-bg: #fffbeb;
+  --color-error:      #dc2626;
+  --color-error-bg:   #fef2f2;
+  --color-info:       #0284c7;
+  --color-info-bg:    #f0f9ff;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] {
+  --color-bg:            #0f172a;
+  --color-bg-subtle:     #1e293b;
+  --color-surface:       #1e293b;
+  --color-border:        #2d3f55;
+  --color-border-strong: #3d5068;
+
+  --color-text:         #f1f5f9;
+  --color-text-muted:   #94a3b8;
+  --color-text-subtle:  #64748b;
+  --color-text-inverse: #0f172a;
+
+  --color-primary:       #4f87f5;
+  --color-primary-hover: #6b9bf7;
+  --color-primary-text:  #ffffff;
+
+  --color-header-bg:     #0a111e;
+  --color-header-border: #1e293b;
+
+  /* Feedback — slightly brighter for dark backgrounds */
+  --color-success:    #22c55e;
+  --color-success-bg: #052e16;
+  --color-warning:    #f59e0b;
+  --color-warning-bg: #1c1408;
+  --color-error:      #f87171;
+  --color-error-bg:   #2d0a0a;
+  --color-info:       #38bdf8;
+  --color-info-bg:    #0a1f2e;
+}

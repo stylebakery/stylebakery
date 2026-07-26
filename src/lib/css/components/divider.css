@@ -1,0 +1,42 @@
+/* components/divider.css */
+
+.divider {
+  border:     none;
+  border-top: 1px solid var(--color-border);
+  margin:     var(--space-4) 0;
+}
+
+.divider-strong {
+  border-color: var(--color-border-strong);
+}
+
+.divider-vertical {
+  border:        none;
+  border-left:   1px solid var(--color-border);
+  height:        1rem;
+  align-self:    center;
+  margin:        0 var(--space-2);
+  display:       inline-block;
+}
+
+/* --- Labeled divider --- */
+.divider-labeled {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-3);
+  margin:      var(--space-4) 0;
+}
+.divider-line {
+  flex:       1;
+  height:     1px;
+  background: var(--color-border);
+}
+.divider-line.divider-strong { background: var(--color-border-strong); }
+.divider-text {
+  font-size:      var(--text-xs);
+  font-weight:    var(--font-semibold);
+  color:          var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  white-space:    nowrap;
+}

@@ -1,0 +1,151 @@
+/* components/accordion.css */
+
+/* --- Container --- */
+
+.accordion {
+  border:        1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow:      hidden;
+}
+
+.accordion-flush    { border: none; border-radius: 0; }
+
+
+/* --- Item --- */
+
+.accordion-item { border-bottom: 1px solid var(--color-border); }
+.accordion-item:last-child { border-bottom: none; }
+
+
+/* --- Trigger --- */
+
+.accordion-trigger {
+  width:            100%;
+  display:          flex;
+  align-items:      center;
+  justify-content:  space-between;
+  gap:              var(--space-4);
+  padding:          var(--space-4) var(--space-5);
+  background-color: var(--color-surface);
+  border:           none;
+  cursor:           pointer;
+  text-align:       left;
+  font-family:      var(--font-sans);
+  font-size:        var(--text-sm);
+  font-weight:      var(--font-medium);
+  color:            var(--color-text);
+  transition:       background-color var(--duration-fast) var(--ease-default);
+  user-select:      none;
+}
+
+.accordion-trigger:hover { background-color: var(--color-bg-subtle); }
+
+.accordion-trigger:focus-visible {
+  outline:        2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.accordion-item.open > .accordion-trigger {
+  background-color: var(--color-bg-subtle);
+  color:            var(--color-primary);
+}
+
+
+/* --- Trigger content --- */
+
+.accordion-trigger-content {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-3);
+  flex:        1;
+  min-width:   0;
+}
+
+.accordion-icon { color: var(--color-text-muted); font-size: 1.1rem; flex-shrink: 0; }
+.accordion-item.open > .accordion-trigger .accordion-icon { color: var(--color-primary); }
+
+.accordion-title    { font-size: var(--text-sm); font-weight: var(--font-medium); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.accordion-subtitle { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: var(--font-normal); margin-top: var(--space-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+
+/* --- Chevron --- */
+
+.accordion-chevron {
+  font-size:   1.1rem;
+  color:       var(--color-text-subtle);
+  flex-shrink: 0;
+  transition:  transform var(--duration-normal) var(--ease-default),
+               color     var(--duration-fast)   var(--ease-default);
+}
+
+.accordion-item.open > .accordion-trigger .accordion-chevron {
+  transform: rotate(180deg);
+  color:     var(--color-primary);
+}
+
+
+/* --- Body --- */
+
+.accordion-body {
+  overflow:   hidden;
+  height:     0;
+  transition: height var(--duration-normal) var(--ease-default);
+}
+
+.accordion-body-inner {
+  padding:     var(--space-4) var(--space-5);
+  padding-top: 0;
+  font-size:   var(--text-sm);
+  color:       var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  border-top:  1px solid var(--color-border);
+}
+
+.accordion-body-inner-padded { padding-top: var(--space-4); }
+
+
+/* --- Badge --- */
+
+.accordion-badge {
+  margin-left:      auto;
+  background-color: var(--color-slate-100);
+  color:            var(--color-text-muted);
+  font-size:        var(--text-xs);
+  font-weight:      var(--font-semibold);
+  padding:          0 var(--space-2);
+  border-radius:    var(--radius-full);
+  flex-shrink:      0;
+  line-height:      1.6;
+}
+
+.accordion-item.open .accordion-badge {
+  background-color: var(--color-primary);
+  color:            var(--color-primary-text);
+}
+
+
+/* --- Variants --- */
+
+.accordion-separated {
+  border:     none;
+  background: transparent;
+  display:    flex;
+  flex-direction: column;
+  gap:        var(--space-2);
+}
+
+.accordion-separated .accordion-item {
+  border:        1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow:      hidden;
+}
+
+.accordion-separated .accordion-item.open {
+  border-color: var(--color-primary);
+  box-shadow:   0 0 0 3px rgb(37 99 235 / 0.08);
+}
+
+.accordion-minimal { border: none; }
+.accordion-minimal .accordion-item { border-bottom: 1px solid var(--color-border); }
+.accordion-minimal .accordion-trigger  { padding-left: 0; padding-right: 0; }
+.accordion-minimal .accordion-body-inner { padding-left: 0; padding-right: 0; }

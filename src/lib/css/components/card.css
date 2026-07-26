@@ -1,0 +1,128 @@
+/* components/card.css */
+
+.card {
+  background-color: var(--color-surface);
+  border:           1px solid var(--color-border);
+  border-radius:    var(--radius-md);
+  box-shadow:       var(--shadow-sm);
+}
+
+
+/* --- Sections --- */
+
+.card-header {
+  display:          flex;
+  align-items:      center;
+  justify-content:  space-between;
+  padding:          var(--space-4) var(--space-6);
+  border-bottom:    1px solid var(--color-border);
+  gap:              var(--space-4);
+  background-color: var(--color-bg-subtle);
+  border-radius:    var(--radius-md) var(--radius-md) 0 0;
+}
+
+.card-title {
+  font-size:   var(--text-base);
+  font-weight: var(--font-semibold);
+  color:       var(--color-text);
+  margin:      0;
+}
+
+.card-subtitle {
+  font-size:  var(--text-sm);
+  color:      var(--color-text-muted);
+  margin:     var(--space-1) 0 0 0;
+}
+
+.card-header-actions {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-2);
+  flex-shrink: 0;
+}
+
+.card-body {
+  padding: var(--space-6);
+}
+
+.card-footer {
+  display:          flex;
+  align-items:      center;
+  justify-content:  flex-end;
+  padding:          var(--space-4) var(--space-6);
+  border-top:       1px solid var(--color-border);
+  gap:              var(--space-2);
+  background-color: var(--color-bg-subtle);
+  border-radius:    0 0 var(--radius-md) var(--radius-md);
+}
+
+.card-footer-left  { justify-content: flex-start;    }
+.card-footer-split { justify-content: space-between; }
+
+
+/* --- Variants --- */
+
+.card-flat   { box-shadow: none; }
+.card-raised { box-shadow: var(--shadow-lg); }
+
+.card-interactive {
+  cursor:     pointer;
+  transition: box-shadow   var(--duration-fast) var(--ease-default),
+              border-color var(--duration-fast) var(--ease-default),
+              transform    var(--duration-fast) var(--ease-default);
+}
+
+.card-interactive:hover {
+  box-shadow:   var(--shadow-lg);
+  border-color: var(--color-border-strong);
+}
+
+.card-interactive:active {
+  transform: translateY(1px);
+}
+
+.card-selected {
+  border-color: var(--color-primary);
+  box-shadow:   0 0 0 3px rgb(45 106 224 / 0.12);
+}
+
+
+/* --- Padding modifiers --- */
+
+.card-body-sm   { padding: var(--space-4); }
+.card-body-lg   { padding: var(--space-8); }
+.card-body-none { padding: 0; }
+
+.card-flush > .card-body { padding: 0; }
+
+
+/* --- Color variants --- */
+
+.card-subtle {
+  background-color: var(--color-bg-subtle);
+  box-shadow:       none;
+}
+
+.card-subtle .card-header {
+  background-color: transparent;
+}
+
+.card-info    { background-color: var(--color-info-bg);    border-color: var(--color-info);    }
+.card-success { background-color: var(--color-success-bg); border-color: var(--color-success); }
+.card-warning { background-color: var(--color-warning-bg); border-color: var(--color-warning); }
+.card-error   { background-color: var(--color-error-bg);   border-color: var(--color-error);   }
+
+.card-info .card-header,
+.card-success .card-header,
+.card-warning .card-header,
+.card-error .card-header {
+  background-color: transparent;
+}
+
+
+/* --- Grid layouts --- */
+
+.card-grid   { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4); }
+.card-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+.card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+.card-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }

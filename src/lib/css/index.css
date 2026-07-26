@@ -1,0 +1,20 @@
+/* index.css — main entry point (DEFAULT THEME + BASE)
+   ──────────────────────────────────────────────────────────────
+   Two-layer architecture:
+
+     overlay/default.css  → CUSTOMIZABLE: all token values
+                            (colors, type, spacing, radius, shadow)
+                            for light + dark mode.
+     base.css             → STRUCTURAL: resets, layout, components.
+                            Consumes tokens via var(), defines none.
+
+   The overlay MUST load first so tokens exist before base consumes
+   them. To ship a custom theme, either replace overlay/default.css,
+   or load index.css then your generated theme.css after it.
+   ────────────────────────────────────────────────────────────── */
+
+/* 1 — Customizable overlay (token values) */
+@import './overlay/default.css';
+
+/* 2 — Structural base (consumes tokens) */
+@import './base.css';

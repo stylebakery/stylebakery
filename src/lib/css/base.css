@@ -1,0 +1,47 @@
+/* base.css — STRUCTURAL ENTRY POINT (no token values)
+   ──────────────────────────────────────────────────────────────
+   All structure: resets, layout, component anatomy. Every color /
+   size / shadow here is a var() reference. This file defines NO
+   token values — pair it with an overlay (overlay/default.css or a
+   generated theme.css) that supplies them.
+
+   Load order in a project:
+     1. your overlay (theme.css)  → defines the tokens
+     2. base.css                  → consumes them
+   index.css below bundles the default overlay + this base together.
+   ────────────────────────────────────────────────────────────── */
+
+/* Base */
+@import './base/root.css';
+
+/* Layout */
+@import './layout/container.css';
+@import './layout/grid.css';
+@import './layout/shell.css';
+
+/* Components */
+@import './components/button.css';
+@import './components/card.css';
+@import './components/nav.css';
+@import './components/sidebar.css';
+@import './components/form.css';
+@import './components/modal.css';
+@import './components/accordion.css';
+@import './components/login.css';
+@import './components/badge.css';
+@import './components/divider.css';
+@import './components/table.css';
+@import './components/alert.css';
+@import './components/checkbox-radio.css';
+@import './components/dropdown.css';
+@import './components/spinner.css';
+@import './components/tooltip.css';
+@import './components/progress.css';
+@import './components/pagination.css';
+@import './components/calendar.css';
+@import './components/topbar-layout.css';
+@import './components/nestable.css';
+@import './components/collapsible.css';
+
+/* Icons */
+@import './icons/icons.css';

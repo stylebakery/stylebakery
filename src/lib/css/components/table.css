@@ -1,0 +1,98 @@
+/* components/table.css */
+
+.table-wrapper {
+  width:      100%;
+  overflow-x: auto;
+}
+
+.table {
+  width:           100%;
+  border-collapse: collapse;
+  font-size:       var(--text-sm);
+}
+
+.table th {
+  padding:          var(--space-3) var(--space-4);
+  text-align:       left;
+  font-size:        var(--text-xs);
+  font-weight:      var(--font-semibold);
+  color:            var(--color-text-muted);
+  letter-spacing:   var(--tracking-wide);
+  text-transform:   uppercase;
+  background-color: var(--color-bg-subtle);
+  border-bottom:    2px solid var(--color-border);
+  white-space:      nowrap;
+}
+
+.table td {
+  padding:       var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  color:         var(--color-text);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover td {
+  background-color: var(--color-bg-subtle);
+}
+
+/* Bordered */
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid var(--color-border);
+}
+
+/* Compact */
+.table-compact th,
+.table-compact td {
+  padding: var(--space-2) var(--space-3);
+}
+
+/* Column alignment */
+.table .col-right  { text-align: right;  }
+.table .col-center { text-align: center; }
+.table .col-number { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Row states */
+.table tr.row-selected td { background-color: rgb(37 99 235 / 0.05); }
+.table tr.row-muted td    { color: var(--color-text-muted); }
+
+/* --- Sortable columns --- */
+.table-th-sortable { padding: 0; }
+.table-sort-btn {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            var(--space-1);
+  width:          100%;
+  padding:        var(--space-3) var(--space-4);
+  border:         none;
+  background:     none;
+  font:           inherit;
+  font-size:      var(--text-xs);
+  font-weight:    var(--font-semibold);
+  color:          var(--color-text-muted);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor:         pointer;
+}
+.table-sort-btn:hover { color: var(--color-text); }
+.table-sort-icon {
+  font-size: 1rem;
+  opacity:   0.4;
+}
+.table-sort-icon.active { opacity: 1; color: var(--color-primary); }
+
+/* --- Striped --- */
+.table-striped tbody tr:nth-child(even) td { background-color: var(--color-bg-subtle); }
+.table-striped tbody tr:hover td { background-color: var(--color-slate-100, var(--color-bg-subtle)); }
+
+/* --- Empty state --- */
+.table-empty {
+  text-align: center !important;
+  color:      var(--color-text-subtle);
+  padding:    var(--space-8) var(--space-4) !important;
+  font-size:  var(--text-sm);
+}

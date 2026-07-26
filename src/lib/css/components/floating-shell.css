@@ -1,0 +1,93 @@
+/* layouts/floating-shell.css */
+
+.fl-root {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding:    var(--space-4);
+  display:    flex;
+  flex-direction: column;
+  gap:        var(--space-4);
+}
+
+/* Floating top card */
+.fl-topcard {
+  display:       flex;
+  align-items:   center;
+  gap:           var(--space-6);
+  padding:       var(--space-2) var(--space-4);
+  background:    var(--color-surface);
+  border:        1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow:    var(--shadow-md);
+}
+.fl-brand {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-weight: var(--font-bold); font-size: var(--text-lg); color: var(--color-text);
+  white-space: nowrap;
+}
+.fl-brand-icon { color: var(--color-accent-light, var(--color-primary)); }
+.fl-topnav { display: flex; align-items: center; gap: var(--space-1); flex: 1; }
+.fl-toplink {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);
+  font-size: var(--text-sm); font-weight: var(--font-medium);
+  color: var(--color-text-muted); text-decoration: none; white-space: nowrap;
+  transition: background var(--duration-fast) var(--ease-default), color var(--duration-fast) var(--ease-default);
+}
+.fl-toplink .material-symbols-outlined { font-size: 1.15rem; }
+.fl-toplink:hover { background: var(--color-bg-subtle); color: var(--color-text); }
+.fl-toplink.active { background: var(--color-primary-subtle, var(--color-bg-subtle)); color: var(--color-primary); }
+.fl-actions { display: inline-flex; align-items: center; gap: var(--space-3); }
+
+/* Body: floating side card + content */
+.fl-body { display: flex; gap: var(--space-4); flex: 1; min-height: 0; }
+
+.fl-sidecard {
+  width:         14rem;
+  flex-shrink:   0;
+  display:       flex;
+  flex-direction: column;
+  padding:       var(--space-3);
+  background:    var(--color-surface);
+  border:        1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow:    var(--shadow-md);
+  height:        fit-content;
+  max-height:    100%;
+  overflow-y:    auto;
+}
+.fl-side-brand { padding: var(--space-2) var(--space-2) var(--space-3); }
+.fl-sidenav { display: flex; flex-direction: column; gap: 1px; }
+.fl-side-label {
+  font-size: var(--text-xs); font-weight: var(--font-semibold); text-transform: uppercase;
+  letter-spacing: var(--tracking-wide); color: var(--color-text-subtle);
+  padding: var(--space-3) var(--space-2) var(--space-1);
+}
+.fl-sidelink {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);
+  font-size: var(--text-sm); font-weight: var(--font-medium);
+  color: var(--color-text-muted); text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-default), color var(--duration-fast) var(--ease-default);
+}
+.fl-sidelink .material-symbols-outlined { font-size: 1.25rem; }
+.fl-sidelink:hover { background: var(--color-bg-subtle); color: var(--color-text); }
+.fl-sidelink.active { background: var(--color-primary-subtle, var(--color-bg-subtle)); color: var(--color-primary); }
+.fl-sidelabel { flex: 1; }
+.fl-badge {
+  font-size: var(--text-xs); font-weight: var(--font-semibold);
+  background: var(--color-primary); color: var(--color-primary-text);
+  border-radius: var(--radius-full); padding: 0 var(--space-2); min-width: 1.25rem; text-align: center;
+}
+.fl-side-foot { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--color-border); }
+
+/* Content: also a floating card so everything sits on the bg */
+.fl-content {
+  flex:          1;
+  background:    var(--color-surface);
+  border:        1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow:    var(--shadow-sm);
+  overflow-y:    auto;
+}
+.fl-inner { padding: var(--space-6); }

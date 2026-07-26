@@ -1,0 +1,105 @@
+/* components/checkbox-radio.css */
+
+/* ─── Checkbox ─── */
+.checkbox {
+  display:      inline-flex;
+  align-items:  center;
+  gap:          var(--space-2);
+  cursor:       pointer;
+  user-select:  none;
+}
+.checkbox input {
+  position: absolute;
+  opacity:  0;
+  width:    0;
+  height:   0;
+}
+.checkbox-box {
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  width:            1.15rem;
+  height:           1.15rem;
+  border:           1.5px solid var(--color-border-strong, var(--color-border));
+  border-radius:    var(--radius-sm);
+  background:       var(--color-surface);
+  transition:       background var(--duration-fast) var(--ease-default),
+                    border-color var(--duration-fast) var(--ease-default);
+  flex-shrink:      0;
+}
+.checkbox-icon {
+  font-size:  1rem;
+  color:      var(--color-primary-text);
+  transform:  scale(0);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+.checkbox input:checked + .checkbox-box,
+.checkbox input:indeterminate + .checkbox-box {
+  background:   var(--color-primary);
+  border-color: var(--color-primary);
+}
+.checkbox input:checked + .checkbox-box .checkbox-icon,
+.checkbox input:indeterminate + .checkbox-box .checkbox-icon {
+  transform: scale(1);
+}
+.checkbox input:focus-visible + .checkbox-box {
+  outline:        2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.checkbox-label { font-size: var(--text-sm); color: var(--color-text); }
+.checkbox-disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ─── Radio ─── */
+.radio {
+  display:      inline-flex;
+  align-items:  center;
+  gap:          var(--space-2);
+  cursor:       pointer;
+  user-select:  none;
+}
+.radio input {
+  position: absolute;
+  opacity:  0;
+  width:    0;
+  height:   0;
+}
+.radio-circle {
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  width:            1.15rem;
+  height:           1.15rem;
+  border:           1.5px solid var(--color-border-strong, var(--color-border));
+  border-radius:    var(--radius-full);
+  background:       var(--color-surface);
+  transition:       border-color var(--duration-fast) var(--ease-default);
+  flex-shrink:      0;
+}
+.radio-dot {
+  width:         0.55rem;
+  height:        0.55rem;
+  border-radius: var(--radius-full);
+  background:    var(--color-primary);
+  transform:     scale(0);
+  transition:    transform var(--duration-fast) var(--ease-default);
+}
+.radio input:checked + .radio-circle { border-color: var(--color-primary); }
+.radio input:checked + .radio-circle .radio-dot { transform: scale(1); }
+.radio input:focus-visible + .radio-circle {
+  outline:        2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.radio-label { font-size: var(--text-sm); color: var(--color-text); }
+.radio-disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ─── Radio group ─── */
+.radio-group {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-2);
+}
+.radio-group-inline {
+  flex-direction: row;
+  flex-wrap:      wrap;
+  gap:            var(--space-4);
+}
